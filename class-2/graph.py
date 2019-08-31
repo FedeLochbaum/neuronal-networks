@@ -1,0 +1,46 @@
+
+
+def compute_next_state(node, movement):
+  # todo
+  2
+
+def possible_movements(node):
+  x, y = current_target_position(node)
+  
+  return []
+
+class EightProblemGraph:
+  def __init__(self):
+    self.graph = {}
+
+  def __getattribute__(self, node):
+    if node not in self.graph:
+      possible_movements = possible_movements(node) ## [left, right...]
+      self.graph[node] = {}
+      for movement in possible_movements:
+        self.graph[node].update({ movement: compute_next_state(node, movement) })
+
+    return self.graph[node]
+
+
+# A node is an array of the form 
+# [ 
+#   [1, 2, 3]
+#   [4, 5, 6]
+#   [7, 8, 0]
+# ]
+# and the graph is a dict with { node => { moveSwap => newNode... } }
+# moveSwap = { up, down, right, left }
+
+win_node = [
+  [1, 2, 3],
+  [4, 5, 6],
+  [7, 8, 0]
+]
+
+# TODO: generate dynamic
+initial_node = [
+  [4,2,1],
+  [8,0,7],
+  [6,5,3]
+]

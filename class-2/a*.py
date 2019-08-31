@@ -1,5 +1,6 @@
 from queue import PriorityQueue
 
+# g is the function that receives a node n2 and return the acummulated cost between the initial node n1 and n2
 def gs(graph, initialNode, h, g):
   pqueue = PriorityQueue()
   visited = set()
