@@ -1,0 +1,24 @@
+- estado initial como una tupla 
+  ( "CFGW", "") => ("FG => "") -> ( "CW", "FG") <- ("FG <= "") => ( "CFGW", "") 
+- con orden alfabetico
+
+diccionario de estados:
+  (tupla de arriba) => diccionario (estado en el que termina)
+
+
+example: {
+  ("CFGW", "") -> { 
+    "FG =>" -> ("CW", "FG") 
+    // todas las posibles transiciones de dicho estado inicial (aristas)
+  }...
+}...
+
+ - Usando BFS/DFS uno puede entrar el estado (nodo) final y recuperar su camino
+
+
+
+
+
+
+
+
