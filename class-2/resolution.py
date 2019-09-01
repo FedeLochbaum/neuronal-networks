@@ -1,4 +1,4 @@
-from graph import EightProblemGraph, current_target_position
+from graph import EightProblemGraph, current_target_position, compute_next_state
 from functools import reduce
 import random
 import gs
@@ -33,8 +33,7 @@ def checker(initialNode, solution):
   for direction in path:
     x, y = current_target_position(initialNode)
     newX, newY = next_movement(direction, x, y)
-    initialNode[x][y] = initialNode[newX][newY]
-    initialNode[newX][newY] = 0
+    initialNode = compute_next_state(initialNode, newX, newY)
   return initialNode == win_node
 
 def generate_initial_node():
@@ -50,9 +49,9 @@ def number_of_wrong_numbers(node):
         accum+=1
   return accum
 
+# |𝑎−𝑐|+|𝑏−𝑑|
 def manhattan_distance_of(current_value, x, y):
   correct_x, correct_y = position_of_value(current_value)
-  # |𝑎−𝑐|+|𝑏−𝑑|
   return abs(x - correct_x) + abs(y - correct_y)
   
 
