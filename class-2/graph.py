@@ -2,7 +2,7 @@
 import copy
 
 start_delimiter_point = 0
-end_delimiter_point = 2
+end_delimiter_point   = 2
 
 # A node is an array of the form 
 # [ 
@@ -10,8 +10,8 @@ end_delimiter_point = 2
 #   [4, 5, 6]
 #   [7, 8, 0]
 # ]
-# and the graph is a dict with { node => { moveSwap => newNode... } }
-# moveSwap = { up, down, right, left }
+# graph    = { node => { moveSwap => newNode... } }
+# moveSwap = UP | DOWN | RIGHT | LEFT
 
 def compute_next_state(node, newX, newY):
   newNode = copy.deepcopy(node)

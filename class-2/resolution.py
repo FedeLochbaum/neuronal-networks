@@ -29,6 +29,8 @@ def next_movement(direction, x, y):
   return result[direction](x, y)
 
 def checker(initialNode, solution):
+  if(solution == None):
+    return 'Fail'
   win_node, path = solution
   for direction in path:
     x, y = current_target_position(initialNode)
@@ -66,14 +68,7 @@ initial = generate_initial_node()
 print('random initial state: ', str(initial))
 print('\n')
 
-# print('graph: ', str(graph.graph))
-# print('\n')
-# print('graph[initial]: ', str(graph[initial]))
-# print('\n')
-# print('number_of_wrong_numbers of initial:', number_of_wrong_numbers(initial))
-# print('\n')
-# print('sum_of_manhattan_distance of initial: ', sum_of_manhattan_distance(initial))
-# print('\n')
+
 gs_with_h1 = gs.gs(EightProblemGraph(), initial, number_of_wrong_numbers)
 print("GS with number_of_wrong_numbers: %s" % (gs_with_h1, ))
 print('checker: ', checker(initial, gs_with_h1))
