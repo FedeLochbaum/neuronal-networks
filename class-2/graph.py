@@ -13,14 +13,6 @@ end_delimiter_point = 2
 # and the graph is a dict with { node => { moveSwap => newNode... } }
 # moveSwap = { up, down, right, left }
 
-######## Win node
-win_node = [
-  [1, 2, 3],
-  [4, 5, 6],
-  [7, 8, 0]
-]
-########
-
 def compute_next_state(node, newX, newY):
   newNode = copy.deepcopy(node)
   x, y = current_target_position(node)
