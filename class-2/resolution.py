@@ -31,7 +31,7 @@ def next_movement(direction, x, y):
 def checker(initialNode, solution):
   if(solution == None):
     return 'Fail'
-  win_node, path = solution
+  win_node, path, v = solution
   for direction in path:
     x, y = current_target_position(initialNode)
     newX, newY = next_movement(direction, x, y)
@@ -70,8 +70,16 @@ print('\n')
 
 
 gs_with_h1 = gs.gs(EightProblemGraph(), initial, number_of_wrong_numbers)
+gs_with_h2 = gs.gs(EightProblemGraph(), initial, sum_of_manhattan_distance)
+
 print("GS with number_of_wrong_numbers: %s" % (gs_with_h1, ))
-print('checker: ', checker(initial, gs_with_h1))
+if gs_with_h1 != None:
+  print('Count of visited nodes: ', gs_with_h1[2])
+  print('Checker: ', checker(initial, gs_with_h1))
 print('\n')
-# print("GS with sum_of_manhattan_distance: %s" % (gs.gs(EightProblemGraph(), initial, sum_of_manhattan_distance), ))
-# print('\n')
+
+print("GS with sum_of_manhattan_distance: %s" % (gs_with_h2, ))
+if gs_with_h1 != None:
+  print('Count of visited nodes: ', gs_with_h2[2])
+  print('Checker: ', checker(initial, gs_with_h2))
+print('\n')

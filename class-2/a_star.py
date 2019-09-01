@@ -8,7 +8,7 @@ def a_star(graph, initialNode, h, g):
   while not pqueue.empty():
     priority, node, path = pqueue.get_nowait()
     if priority == 0:
-      return node, path
+      return node, path, len(visited)
     for edge_label, target_node in graph[node].items():
       if str(target_node) not in visited:
         visited.add(str(target_node))
