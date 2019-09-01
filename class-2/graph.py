@@ -1,5 +1,4 @@
 
-import random
 import copy
 
 start_delimiter_point = 0
@@ -21,11 +20,6 @@ win_node = [
   [7, 8, 0]
 ]
 ########
-
-def generate_initial_node():
-  possible_numbers = [i for i in range(9)]
-  random.shuffle(possible_numbers)
-  return [possible_numbers[0:3], possible_numbers[3:6], possible_numbers[6:9]]
 
 def compute_next_state(node, newX, newY):
   newNode = copy.deepcopy(node)
@@ -65,13 +59,3 @@ class EightProblemGraph:
         self.graph[str_node].update({ direction: compute_next_state(node, newX, newY) })
 
     return self.graph[str_node]
-
-
-initial = generate_initial_node()
-print('random initial state: ', str(initial))
-print('\n')
-
-graph = EightProblemGraph()
-print('graph: ', str(graph.graph))
-print('\n')
-print('graph[initial]: ', str(graph[initial]))
