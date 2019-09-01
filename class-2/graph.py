@@ -50,7 +50,7 @@ def is_valid_position(t):
 
 def possible_movements(node):
   x, y = current_target_position(node)
-  next_movements = [(x + 1, y, 'UP'), (x - 1, y, 'DOWN'), (x, y + 1, 'RIGHT'), (x, y - 1, 'LEFT')]
+  next_movements = [(x - 1, y, 'UP'), (x + 1, y, 'DOWN'), (x, y + 1, 'RIGHT'), (x, y - 1, 'LEFT')]
   return list(filter(is_valid_position, next_movements))
 
 class EightProblemGraph:
