@@ -1,4 +1,4 @@
-from graph import EightProblemGraph
+from graph import EightProblemGraph, current_target_position
 from functools import reduce
 import random
 import gs
@@ -18,6 +18,24 @@ def position_of_value(value):
       if(win_node[x][y] == value):
         return x, y
   return None
+
+def next_movement(direction, x, y):
+  result = {
+  'UP': lambda x, y: (x - 1, y),
+  'DOWN': lambda x, y: (x + 1, y),
+  'LEFT': lambda x, y: (x, y - 1),
+  'RIGHT': lambda x, y: (x, y + 1),
+  }
+  return result[direction](x, y)
+
+def checker(initialNode, solution):
+  win_node, path = solution
+  for direction in path:
+    x, y = current_target_position(initialNode)
+    newX, newY = next_movement(direction, x, y)
+    initialNode[x][y] = initialNode[newX][newY]
+    initialNode[newX][newY] = 0
+  return initialNode == win_node
 
 def generate_initial_node():
   possible_numbers = [i for i in range(9)]
@@ -57,7 +75,9 @@ print('\n')
 # print('\n')
 # print('sum_of_manhattan_distance of initial: ', sum_of_manhattan_distance(initial))
 # print('\n')
-print("GS with number_of_wrong_numbers: %s" % (gs.gs(EightProblemGraph(), initial, number_of_wrong_numbers),))
+gs_with_h1 = gs.gs(EightProblemGraph(), initial, number_of_wrong_numbers)
+print("GS with number_of_wrong_numbers: %s" % (gs_with_h1, ))
+print('checker: ', checker(initial, gs_with_h1))
 print('\n')
 # print("GS with sum_of_manhattan_distance: %s" % (gs.gs(EightProblemGraph(), initial, sum_of_manhattan_distance), ))
 # print('\n')
