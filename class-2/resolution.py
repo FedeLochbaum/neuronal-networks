@@ -1,6 +1,7 @@
-from graph import EightProblemGraph, current_target_position, compute_next_state
+from graph import EightProblemGraph, current_target_position, compute_next_state, is_valid_position
 from functools import reduce
 import random
+import copy
 import gs
 import a_star
 
@@ -32,16 +33,22 @@ def checker(initialNode, solution):
   if(solution == None):
     return 'Fail'
   win_node, path, v = solution
-  for direction in path:
-    x, y = current_target_position(initialNode)
+  return simulate(initialNode, path) == win_node
+
+def simulate(initialNode, movements):
+  node = copy.deepcopy(initialNode)
+  for direction in movements:
+    x, y = current_target_position(node)
     newX, newY = next_movement(direction, x, y)
-    initialNode = compute_next_state(initialNode, newX, newY)
-  return initialNode == win_node
+    if(is_valid_position((newX, newY, direction))):
+      node = compute_next_state(node, newX, newY)
+  return node
 
 def generate_initial_node():
-  possible_numbers = [i for i in range(9)]
-  random.shuffle(possible_numbers)
-  return [possible_numbers[0:3], possible_numbers[3:6], possible_numbers[6:9]]
+  new_node = copy.deepcopy(win_node)
+  possible_movements = ['UP', 'DOWN', 'LEFT', 'RIGHT']
+  movements = [random.choice(possible_movements) for i in range(100000)]
+  return simulate(new_node, movements)
 
 def number_of_wrong_numbers(node):
   accum = 0
