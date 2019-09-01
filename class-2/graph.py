@@ -1,6 +1,30 @@
 
+import random
+
 start_delimiter_point = 0
 end_delimiter_point = 2
+
+# A node is an array of the form 
+# [ 
+#   [1, 2, 3]
+#   [4, 5, 6]
+#   [7, 8, 0]
+# ]
+# and the graph is a dict with { node => { moveSwap => newNode... } }
+# moveSwap = { up, down, right, left }
+
+######## Win node
+win_node = [
+  [1, 2, 3],
+  [4, 5, 6],
+  [7, 8, 0]
+]
+########
+
+def generate_initial_node():
+  possible_numbers = [i for i in range(9)]
+  random.shuffle(possible_numbers)
+  return [possible_numbers[0:3], possible_numbers[3:6], possible_numbers[6:9]]
 
 def compute_next_state(node, newX, newY):
   newNode = node
@@ -32,7 +56,7 @@ class EightProblemGraph:
   def __init__(self):
     self.graph = {}
 
-  def __getattribute__(self, node):
+  def __getitem__(self, node):
     if node not in self.graph:
       possible_movements = possible_movements(node)
       self.graph[node] = {}
@@ -42,24 +66,12 @@ class EightProblemGraph:
     return self.graph[node]
 
 
-# A node is an array of the form 
-# [ 
-#   [1, 2, 3]
-#   [4, 5, 6]
-#   [7, 8, 0]
-# ]
-# and the graph is a dict with { node => { moveSwap => newNode... } }
-# moveSwap = { up, down, right, left }
+print('generate_initial_node: ', str(generate_initial_node()))
+print('\n')
+print('generate_initial_node2: ', str(generate_initial_node()))
+print('\n')
 
-win_node = [
-  [1, 2, 3],
-  [4, 5, 6],
-  [7, 8, 0]
-]
-
-# TODO: generate dynamic
-initial_node = [
-  [4,2,1],
-  [8,0,7],
-  [6,5,3]
-]
+graph = EightProblemGraph()
+print('graph: ', str(graph.graph))
+print('\n')
+print('graph[generate_initial_node()]: ', str(graph[generate_initial_node()]))
