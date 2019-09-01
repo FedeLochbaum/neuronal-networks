@@ -4,14 +4,14 @@ from queue import PriorityQueue
 def a_star(graph, initialNode, h, g):
   pqueue = PriorityQueue()
   visited = set()
-  pqueue.put(h(initialNode), initialNode, [])
+  pqueue.put((h(initialNode), initialNode, []))
   while not pqueue.empty():
     priority, node, path = pqueue.get_nowait()
     if priority == 0:
       return node, path
     for edge_label, target_node in graph[node].items():
-      if target_node not in visited:
-        visited.add(target_node)
+      if str(target_node) not in visited:
+        visited.add(str(target_node))
         pqueue.put((
           g(target_node) + h(target_node),
           target_node,
