@@ -77,7 +77,12 @@ print('\n')
 
 
 gs_with_h1 = gs.gs(EightProblemGraph(), initial, number_of_wrong_numbers)
+
 gs_with_h2 = gs.gs(EightProblemGraph(), initial, sum_of_manhattan_distance)
+
+a_star_with_h1 = a_star.a_star(EightProblemGraph(), initial, number_of_wrong_numbers)
+
+a_star_with_h2 = a_star.a_star(EightProblemGraph(), initial, sum_of_manhattan_distance)
 
 print("GS with number_of_wrong_numbers: %s" % (gs_with_h1, ))
 if gs_with_h1 != None:
@@ -90,3 +95,18 @@ if gs_with_h1 != None:
   print('Count of visited nodes: ', gs_with_h2[2])
   print('Checker: ', checker(initial, gs_with_h2))
 print('\n')
+
+print("A* with number_of_wrong_numbers: %s" % (a_star_with_h1, ))
+if a_star_with_h1 != None:
+  print('Count of visited nodes: ', a_star_with_h1[2])
+  print('Checker: ', checker(initial, a_star_with_h1))
+print('\n')
+
+print("A* with sum_of_manhattan_distance: %s" % (a_star_with_h2, ))
+if a_star_with_h2 != None:
+  print('Count of visited nodes: ', a_star_with_h2[2])
+  print('Checker: ', checker(initial, a_star_with_h2))
+print('\n')
+
+
+
