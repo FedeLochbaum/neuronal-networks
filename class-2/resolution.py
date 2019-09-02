@@ -71,10 +71,55 @@ def sum_of_manhattan_distance(node):
       accum+= manhattan_distance_of(node[x][y], x, y)
   return accum
 
+# Al parecer, tanto number_of_wrong_numbers como sum_of_manhattan_distance son admisibles,
+# en general, se basan en la representacion del tablero para calcular un numero exacto sin sobre estimar la lejania del estado actual al estado ganador
+
+# Podemos decir que sum_of_manhattan_distance es dominante con respecto a number_of_wrong_numbers.
+# number_of_wrong_numbers asigna como mucho valor 1 a cualquier posicion nodo del tablero que este en una posicion incorrecta,
+# en cambio, sum_of_manhattan_distance en el mejor de los casos, para cualquier nodo en posicion incorrecta va a retornar 1, 
+# pero en el caso general, la distancia manhattan para cualquier nodo incorrecto, va a retornar >1.
+
+# En general, la heuristica sum_of_manhattan_distance suele encontrar mejores soluciones que number_of_wrong_numbers,
+# tanto en cantidad de nodos visitados como en la longitud del path resultante. Aun asi, esto no siempre sucede, existen grafos en los cuales number_of_wrong_numbers consigue encontrar una solucion mas optima.
+
+# Con respecto a los recorridos, se puede observar que GS consigue en menor cantidad de iteraciones (nodos visitados) una solucion para dicho problema, usando un recorrido que tiende mas a DFS.
+# Sin embargo, A* Logra conseguir mejores resultados con respecto a la calidad de la solucion (caminos mas cortos) de lo cual se puede asumir que el recorrido generado tiende mas a BFS.
+# Como se vio en clase, las soluciones generadas por A* suelen ser de mucha mejor calidad, pero habiendo explorado una cantidad considerable de nodos,
+# a diferencia de GS que consigue soluciones no tan buenas generando una cantidad inferior de nodos.
+
+# Ejemplo:
+# Estado inicial:
+# [8, 2, 5]
+# [3, 1, 0]
+# [4, 6, 7]
+
+# GS con number_of_wrong_numbers:
+#
+# Longitud de la solucion: 143
+#
+# Cantidad de nodos visitados: 1737
+
+# GS con sum_of_manhattan_distance:
+#
+# Longitud de la solucion: 93
+#
+# Cantidad de nodos visitados: 1115
+
+# A* con number_of_wrong_numbers:
+#
+# Longitud de la solucion: 23
+#
+# Cantidad de nodos visitados: 48417
+
+# A* con sum_of_manhattan_distance:
+#
+# Longitud de la solucion: 25
+#
+# Cantidad de nodos visitados: 17607
+
 initial = generate_initial_node()
 print('random initial state: ', str(initial))
 print('\n')
-
 
 gs_with_h1 = gs.gs(EightProblemGraph(), initial, number_of_wrong_numbers)
 gs_with_h2 = gs.gs(EightProblemGraph(), initial, sum_of_manhattan_distance)
