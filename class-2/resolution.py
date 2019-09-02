@@ -77,11 +77,8 @@ print('\n')
 
 
 gs_with_h1 = gs.gs(EightProblemGraph(), initial, number_of_wrong_numbers)
-
 gs_with_h2 = gs.gs(EightProblemGraph(), initial, sum_of_manhattan_distance)
-
 a_star_with_h1 = a_star.a_star(EightProblemGraph(), initial, number_of_wrong_numbers)
-
 a_star_with_h2 = a_star.a_star(EightProblemGraph(), initial, sum_of_manhattan_distance)
 
 print("GS with number_of_wrong_numbers: %s" % (gs_with_h1, ))
