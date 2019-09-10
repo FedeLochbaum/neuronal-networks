@@ -41,18 +41,30 @@ PREDICATES = [
 
 def pickUpOp(block):
   otherBlocks = list(set(BLOCKS) - set(block))
-  return ('pickUp' + block, ['empty', 'onTable' + block, 'clear' + block], ['empty', 'onTable' + block, 'on' + block + otherBlocks[0], 'on' + block + otherBlocks[1]], ['holding' + block])
+  return ('pickUp' + block, 
+    ['empty', 'onTable' + block, 'clear' + block], 
+    ['empty', 'onTable' + block, 'on' + block + otherBlocks[0], 'on' + block + otherBlocks[1]], 
+    ['holding' + block])
 
 def putDownOp(block):
-  return ('putDown' + block, ['holding' + block], ['holding' + block], ['empty', 'onTable' + block, 'clear' + block])
+  return ('putDown' + block, 
+    ['holding' + block], 
+    ['holding' + block], 
+    ['empty', 'onTable' + block, 'clear' + block])
 
 def stackOp(t):
   block1, block2 = t
-  return ('stack' + block1 + block2, ['clear' + block2, 'holding' + block1, 'onTable' + block2], ['clear' + block2, 'holding' + block1], ['on' + block1 + block2, 'empty', 'onTable' + block1, 'clear' + block1])
+  return ('stack' + block1 + block2, 
+    ['clear' + block2, 'holding' + block1, 'onTable' + block2], 
+    ['clear' + block2, 'holding' + block1], 
+    ['on' + block1 + block2, 'empty', 'onTable' + block1, 'clear' + block1])
 
 def unStackOp(t):
   block1, block2 = t
-  return ('unStack' + block1 + block2, ['on' + block1 + block2, 'onTable' + block1, 'onTable' + block2, 'empty', 'clear' + block1], ['on' + block1 + block2, 'onTable' + block1, 'empty', 'clear' + block1], ['clear' + block2, 'holding' + block1])
+  return ('unStack' + block1 + block2, 
+    ['on' + block1 + block2, 'onTable' + block1, 'onTable' + block2, 'empty', 'clear' + block1], 
+    ['on' + block1 + block2, 'onTable' + block1, 'empty', 'clear' + block1],
+    ['clear' + block2, 'holding' + block1])
 
 op_generator = {
   'pickUp': pickUpOp,
