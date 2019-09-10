@@ -17,12 +17,9 @@ def monotonic_abstraction(node):
 def operations(node):
   return [ops for action in ACTIONS for ops in generateOps(node, action)]#list(filter(is_valid_op(node), generateOps(node, action)))]
 
-# Si = (Si−1 \ Eff −(oi)) ∪ Eff +(oi).
 def compute_next_state(node, operation):
   action, pre, eff_minus, eff_plus = operation
-  # if is_valid_op(node)(operation):
   return list(set(node).union(set(eff_plus)))
-  # return None
 
 class HeuristicGraph:
   def __init__(self):
