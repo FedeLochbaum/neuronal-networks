@@ -1,5 +1,6 @@
 from a_star import a_star
 from graph import ACTIONS, is_valid_op, generateOps
+import math
 
 LOGIC_DESCRIPTION = {
   'initial': ['onTableA', 'onTableB', 'onTableC', 'empty', 'clearA', 'clearB', 'clearC'],
@@ -12,10 +13,13 @@ def trivial_heuristic(node):
   return 1
 
 def monotonic_abstraction(node):
-  return len(a_star(HeuristicGraph(), node, trivial_heuristic)[1])
+  res = a_star(HeuristicGraph(), node, trivial_heuristic)
+  if res == None:
+    return math.inf
+  return len(res[1])
 
 def operations(node):
-  return [ops for action in ACTIONS for ops in generateOps(node, action)]#list(filter(is_valid_op(node), generateOps(node, action)))]
+  return [ops for action in ACTIONS for ops in list(filter(is_valid_op(node), generateOps(node, action)))]
 
 def compute_next_state(node, operation):
   action, pre, eff_minus, eff_plus = operation
