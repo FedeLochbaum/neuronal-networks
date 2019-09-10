@@ -1,5 +1,5 @@
 from a_star import a_star
-from graph import ACTIONS, is_valid_op, generateOps
+from graph import ACTIONS, is_valid_op, generateOps, operations
 import math
 
 LOGIC_DESCRIPTION = {
@@ -17,9 +17,6 @@ def monotonic_abstraction(node):
   if res == None:
     return math.inf
   return len(res[1])
-
-def operations(node):
-  return [ops for action in ACTIONS for ops in list(filter(is_valid_op(node), generateOps(node, action)))]
 
 def compute_next_state(node, operation):
   action, pre, eff_minus, eff_plus = operation

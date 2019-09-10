@@ -22,8 +22,6 @@ PREDICATES = [
 def resolve(desc):
   return a_star(BlocksWorld(), desc['initial'], monotonic_abstraction)
 
-g = BlocksWorld()
-
-print('res: ', a_star(g, LOGIC_DESCRIPTION['initial'], monotonic_abstraction))
+print('res: ', resolve(LOGIC_DESCRIPTION))
 
 
