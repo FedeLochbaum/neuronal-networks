@@ -1,0 +1,108 @@
+PDDL: Planning Domain Definition Languague
+
+Dominio
+  - Predicados
+  - Operadores 
+
+Problema
+  - Objetos
+  - Situacion inicial
+  - Especificacion de objetivo
+
+
+Sintaxis:
+  - Inicial y terminar el file con ()
+  - ( define ( domain  nombreDelDominio)  ... // El dominio deberia ser generico para cualquier instancia de problema
+  - ( define ( problem nombreDelProblema (:domain nombreDelDominio ...)) ... // Una instancia del problema
+  - Types
+    (:types
+      Locatable Area - Object // Locatable, Area heredan de Object
+      Victim Track - Locatable
+      EmArea EvArea - Area
+    )
+  - Predicados
+    (:predicate
+      (located ?l - Locatable ?a - Area ) // el predicado located toma un l (de tipo Locatable) y un a (de tipo Area)
+      (in ?v - Victim ?t Track)
+    )
+  - Operadores
+    (:action Travel 
+      :parameters (
+        ?t - Track
+        ?o - Area
+        ?d - Area
+      )
+      :condition ( at start (located ?t ?o))
+      :effect ( and
+        (not (located ?t ?o))
+        (located ?t ?d)
+        (at start (not (located ?t ?o)))
+        (at end (located ?t ?d))
+        (increase (cost ?t) (toll ?o ?d))
+      )
+      :duration (= // si es un durative action
+        ?duration (travelTime ?o ? d)
+      )
+    )
+    (:action Load
+      :parameters (
+        ?t - Track
+        ?v - Victim
+        ?a - Area
+      )
+      :condition ( and
+        (located ?t ?a)
+        (located ?v ?a)
+      )
+      :effect ( and
+        (in ?v ?t)
+        (not (located ?v ?a))
+      )
+      :duration (= ?duration 1)
+    ) ...
+  - Objects
+    (:objects
+      vic1 vic2 - Victim
+      trck - Track
+      emArea1 emArea2 - EmArea
+      evArea1 evArea2 - EvArea
+    )
+    (:init
+      (located vic1 emArea1)
+      (located vic2 emArea2)
+      (located trck evArea1)
+      (= (cost trck) 0)
+      (= (toll evArea1 emArea1) 1)
+      (= (toll emArea1 evArea1) 1)
+      (= (toll evArea1 emArea2) 1)
+      (= (toll emArea2 evArea1) 1)
+      (= (toll emArea1 emArea2) 4)
+      (= (toll emArea2 emArea1) 4)
+    )
+    (:goal (and
+        (located trck evArea1)
+        (in vic1 trck)
+        (in vic2 trck)
+      )
+    )
+    (:metric minimize (cost trck))
+  - Functions
+    (:functons
+      (cost ?t - Track)
+      (travelTime ?o - Area ?d - Area) // para esto habria que usar :durative-action y no :action
+    )
+
+Ejercicio
+  - Usar SAPA
+  - Bridge-Crossing
+    - a, b, c, d personas
+    - el puente solo soporta solo 2 personas
+    - Deben cruzar con la antorcha en la mano
+    - a cruza en 1 min,
+    - b cruza en 2 min,
+    - c cruza en 5 min,
+    - d cruza en 10 min,
+    - La antorcha cruza a la velocidad del mas lento
+    - El mejor plan que minimice el tiempo
+
+
