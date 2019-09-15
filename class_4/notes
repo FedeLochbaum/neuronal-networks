@@ -93,7 +93,7 @@ Sintaxis:
     )
 
 Ejercicio
-  - Usar SAPA
+  - Usar SAPA // java -jar SapaReplan.jar (domain and problem file name)
   - Bridge-Crossing
     - a, b, c, d personas
     - el puente solo soporta solo 2 personas
