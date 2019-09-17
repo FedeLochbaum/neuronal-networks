@@ -1,16 +1,33 @@
 (define (problem instance) (:domain BridgeCrossing)
-(:objects 
+(:objects
+    a b c d t - Locatable
+    a b c d - Person
+    t - Torch
+    leftSide - Side
+    rightSide - Side
 )
 
 (:init
-    ;todo: put the initial state's facts and numeric values here
+    ( located a leftSide )
+    ( located b leftSide )
+    ( located c leftSide )
+    ( located d leftSide )
+    ( located t leftSide )
+    (= ( travelTimeOfLocatable a ) 1)
+    (= ( travelTimeOfLocatable b ) 2)
+    (= ( travelTimeOfLocatable c ) 5)
+    (= ( travelTimeOfLocatable d ) 10)
+    (= ( travelTimeOfLocatable t ) 0)
 )
 
 (:goal (and
-    ;todo: put the goal condition here
+        ( located a rightSide )
+        ( located b rightSide )
+        ( located c rightSide )
+        ( located d rightSide )
+        ( located t rightSide )
     )
 )
 
-;un-comment the following line if metric is needed
-;(:metric minimize (???))
+(:metric minimize ( total-time ))
 )
