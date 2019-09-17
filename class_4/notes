@@ -9,7 +9,6 @@ Problema
   - Situacion inicial
   - Especificacion de objetivo
 
-
 Sintaxis:
   - Inicial y terminar el file con ()
   - ( define ( domain  nombreDelDominio)  ... // El dominio deberia ser generico para cualquier instancia de problema
