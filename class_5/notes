@@ -1,0 +1,50 @@
+Planning tiene limitaciones, variantes:
+  - Replanning: al detectar un cambio inesperado, replanifica comenzando desde donde esta.
+  - Conformant: Situacion inicial incierta
+  - Contingent: Situacion incierta pero puede sensar para reducir la incerteza.
+  - FOND: Acciones con efectos inciertos, pero con visibilidad completa de los fluents.
+  - POND: Acciones con efectos inciertos mas visibilidad parcial de los fluents.
+  - Probabilistic: Acciones con efectos con probabilidades cuentificadas.
+
+Replanning:
+  - Evacuacion de emergencia
+    - Notificacion de cambio en la situacion de las victimas
+    - Notificacion de retraso en el viaje de un camion
+
+Conformant:
+  - Tablero de ajedrez, intentar llegar a cierta posicion sin saber donde estas
+    - Saltar una cantidad de n celdas en una de las 4 direcciones (te podes caer)
+    - Moverse 1 celda en una de las 4 direcciones (NO te podes caer)
+
+Contingent:
+  - Juego del wumpus, pozos y oro.
+    - Solo sabe si esta a una celda de o bien un pozo, o bien el wumpus.
+
+FOND:
+  - Earth Observation
+    - Contempla acciones que pueden tener efectos disjuntos, por ejemplo,
+      sacar foto desde un satelitepuede ser exitosa o no dependiendo de la nubosidad
+
+POND:
+  - Wumpus con movimiento
+    - Perdes informacion que antes habias ganado
+
+Probabilistic:
+  - Tirar la moneda
+
+Pueden ser representadas en PDDL
+
+Non-determinism:
+  - oneof f1 f2...
+
+Conditional Effects:
+    - when 
+
+Sensing actions:
+  - observe f
+
+Belief State:
+  - Conjunto de conjunto de situaciones
+
+Conclusion: Se puede planificar con incerteza.
+

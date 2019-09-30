@@ -1,0 +1,44 @@
+### Game Playing
+
+- Modelar el TA-TE-TI
+  - Evitar la victoria con circulo (es decir, que no pierda)
+  - `one of` para el turno del oponente (para agregarle no determinismo)
+
+- Juegos de suma 0
+- Juegos de informacion perfecta
+
+- Relational Adversaries: El agente desea lograr su objetivo ante la presencia de otro agente con el objetivo opuesto
+
+- Decision Time: Tiempo razonable
+  - Decisiones imperfactas
+
+- Minimax Decision
+  - Un jugador que maximiza el score
+  - Un jugador que minimiza el score
+  - Complejidad: O(b^m) donde b es el branching factor, m la profundidad del arbol
+
+  - Cutting:
+    - Ideas:
+      - Construir un subarbol con profundidad acotada
+      - Reemplazamos la funcion de evaluacion por una heuristica (probabilidad de victoria)
+        - Funciones lineales ponderadas
+        - Alpha Beta Pruning: solo explorar las jugadas razonables
+          - a score minimo para MAX
+          - b score maximo para MIN
+          - Matamos descencientes de estados donde b <= a (jugadas no razonables)
+          - En el peor caso es igual que minimax, en mejor caso: O(b^(m/2))
+          - Ordenar los descencientes (usar una heuristica)
+          - Iterative Deepening (reordenar diferente en cada iteracion)
+
+  - Any Time: algoritmos que, siempre que cortes, te da la mejor solucion obtenida hasta el momento.
+
+
+Podemos tomar decisiones racionales frente a un adversario racional con objetivo opuesto (minimax), pero un gran costo computacional.
+ABP+ID es un algoritmo que me da un una jugada "buena" pero imperfacta en corto tiempo
+
+Ejercicio:
+  - 4 en linea
+    - 7 columnas de 6 celdas
+    - Goal: hacer una linea de 4 un mismo jugador sin alguna ficha de otro jugador
+  - Programar el juego y jugarlo por linea de comando
+  - programar un jugador automatico basado en ABP+ID 
