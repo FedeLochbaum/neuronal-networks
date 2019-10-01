@@ -38,19 +38,66 @@ class Game:
     return self.won_from_left_to_right(row, column, player) or self.won_from_right_to_left(row, column, player)
 
   def won_from_left_to_right(self, row, column, player):
-    left  = [ self.game[row-i][column-i] if(len(self.game) > row-i and len(self.game[row-i]) > column-i) else None for i in range(7)]
-    right = [ self.game[row+i][column+i] if(len(self.game) <= row+i and len(self.game[row+i]) <= column+i) else None for i in range(7)]
-    return self.check_four_contiguous(list(filter(lambda x: x != None, left + right)), player)
+    left  = self.nodes_from_top_right_to_down_left(row + 1, column - 1)
+    right = self.nodes_from_down_left_to_top_right(row - 1, column + 1)
+    l = list(filter(lambda x: x != None, left + [self.game[row][column]] + right))
+    return self.check_four_contiguous(l, player)
 
   def won_from_right_to_left(self, row, column, player):
-    left  = [ self.game[row-i][column+i] if(len(self.game) > row-i and len(self.game[row-i]) <= column+i) else None for i in range(7)]
-    right = [ self.game[row+i][column-i] if(len(self.game) <= row+i and len(self.game[row+i]) > column-i) else None for i in range(7)]
-    return self.check_four_contiguous(list(filter(lambda x: x != None, left + right)), player)
+    left  = self.nodes_from_down_right_to_top_left(row - 1, column - 1)
+    right = self.nodes_from_top_left_to_down_right(row + 1, column + 1)
+    l = list(filter(lambda x: x != None, left + [self.game[row][column]] + right))
+    return self.check_four_contiguous(l, player)
+
+  def nodes_from_top_right_to_down_left(self, row, column):
+    # row + 1, column - 1
+    res = []
+    while(self.is_valid_position(row, column)):
+      res.append(self.game[row][column])
+      row +=1
+      column -=1
+    return res
+
+  def nodes_from_down_left_to_top_right(self, row, column):
+    # row - 1, column + 1
+    res = []
+    while(self.is_valid_position(row, column)):
+      res.append(self.game[row][column])
+      row -=1
+      column +=1
+    return res
+
+  def nodes_from_down_right_to_top_left(self, row, column):
+    # row - 1, column - 1
+    res = []
+    while(self.is_valid_position(row, column)):
+      res.append(self.game[row][column])
+      row -=1
+      column -=1
+    return res
+
+  def nodes_from_top_left_to_down_right(self, row, column):
+    # row + 1, column + 1
+    res = []
+    while(self.is_valid_position(row, column)):
+      res.append(self.game[row][column])
+      row +=1
+      column +=1
+    return res
+
+  def is_valid_position(self, row, column):
+    return (row >= 0 and row <= self.rows_number - 1) and (column >= 0 and column <= self.columns_number - 1)
 
   def check_four_contiguous(self, array, player):
-    return functools.reduce(
-      lambda acum, elem: acum + 1 if elem == player else 0,
-      array, 0) >= 4
+    maxs = [0]
+    current_max = 0
+    for elem in array:
+      if(elem == player):
+        current_max += 1
+      else:
+        maxs.append(current_max)
+        current_max = 0
+    return max(maxs) >= 4
   
   def check_game_state(self, row, column, player):
     self.game_over = (
