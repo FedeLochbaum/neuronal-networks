@@ -11,6 +11,9 @@ housing = shuffle(pd.read_csv("housing.csv"))
 # Only a feature (total_rooms)
 x = pd.DataFrame(housing['total_rooms'])
 
+# Using a lot of features ([total_rooms, housing_median_age, total_bedrooms, population, households, median_income])
+# x = pd.DataFrame(housing, columns=['housing_median_age', 'total_rooms', 'population', 'households', 'median_income'])
+
 # Goal (median_house_value)
 y = pd.DataFrame(housing['median_house_value'])
 
@@ -37,11 +40,11 @@ print("Mean squared error: %.2f"
 
 print('Variance score: %.2f' % r2_score(housing_y_test, housing_y_pred))
 
-# Plot outputs
-plt.scatter(housing_x_test, housing_y_test,  color='black')
-plt.plot(housing_x_test, housing_y_pred, color='blue', linewidth=3)
+# # Plot outputs
+# plt.scatter(housing_x_test, housing_y_test,  color='black')
+# plt.plot(housing_x_test, housing_y_pred, color='blue', linewidth=3)
 
-plt.xticks(())
-plt.yticks(())
+# plt.xticks(())
+# plt.yticks(())
 
-plt.show()
+# plt.show()
