@@ -1,6 +1,7 @@
 import functools
 
 initial_value = 0
+
 def next(player_tag):
   if('x' == player_tag):
     return 'y'
@@ -113,6 +114,13 @@ class Game:
       print('')
     print('-----------------------------')
 
+  def valid_moves(self):
+    res = []
+    for col in range(self.columns_number):
+      if(self.can_put_in_column(col)):
+        res.append(col)
+    return res
+
   def put_in_column(self, column, player):
     for i in reversed(range(self.rows_number)):
       if (self.game[i][column] == initial_value):
@@ -120,6 +128,13 @@ class Game:
         self.check_game_state(i, column, player)
         return
 
-play()
+  def can_put_in_column(self, column):
+    for i in reversed(range(self.rows_number)):
+      if (self.game[i][column] == initial_value):
+        return True
+    return False
+       
+
+# play()
 
   

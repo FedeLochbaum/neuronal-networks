@@ -1,0 +1,77 @@
+Machine Learning:
+
+Learning:
+  - Aprende de una experiencia E,
+  - de una tarea T con una performance P
+
+Si y solo si la performance P sobre T mejora con mayor experiencia E
+
+Tareas:
+  - Regression, Classification, Clustering
+
+Queremos aprender una funcion `f` ( modelo matematico ) con un vector de n inputs X y un vector de n outputs Y.
+
+- Ajusta bien el conjunto de entrenamiento, si los resultados f(X) ~ Y
+- Predice bien si los resultados de f(X') ~ Y' para vectores X' E Y'
+
+Hiperparametros: Parametros ajustables con libertad, dependiendo el metodo de que se use.
+
+- Generalized Linear models:
+
+Regression:
+  - Modelos lineales y no lineales
+
+Lineal Regression (Rapido y eficiente) Modelo Lineal:
+  - Los datos de tu problema siguen una tendencia lineal
+
+  Se traza una funcion (modelo) que minimice el costo de la sumatoria de error (distancia) para lso datos de entrada,
+    tal que de un mejor resultado para los datos de testeo.
+  
+  Error = ( Sumatoria de i - 0 a n, tl (b - y)^2)
+
+  Algotmos de minimizacion de error:
+    - Cuadrados minimos: 
+      Se traza una curva de la suma de los cuadrados para diferentes rectas, 
+        tq encuentra el maximo o minimo local ( derivada 0)
+    - Gradient descent:
+      Least square suele ser mejor y mas eficiente para modelos lineales.
+
+  - Nos interesa minimizar el residuo, no busca el ajuste perfecto.
+  - Queremos predecir bien, por lo que vemos la "tendencia" de f
+
+
+Classification:
+  - Queremos clasificar, separar en N "categorias" un conjunto de datos
+  - Traza una funcion f continua y derivable tal que "separa" los datos en N categorias.
+
+  - Logistic Regression:
+    Mide la probabilidad de estar en una categoria u otra.
+
+    Se usa la sigmoide: 1/(1 e^-(a + b * x)) que tiene dos grados de libertad: a, b
+
+    - Metodo de maximizacion de probabilidad de acierto:
+      - maximum likelihood:
+        - Super eficiente, soporta multiples categorias
+  
+
+Conclusiones:
+  - Modelos lineales y no lineales.
+
+Ejercicio:
+  California Housing Prices
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
