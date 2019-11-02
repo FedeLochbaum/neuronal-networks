@@ -1,0 +1,36 @@
+Redes neuronales part 1
+
+Neurona - Perceptron
+
+Combinacion lineal de sistemas no lineales (funciones pequeñas), el resultado es un modelo no lineal.
+
+
+Modelado de un perceptron como una funcion, recibe inputs, cada input tiene asociado un "peso" donde:
+  - Hace la sumatoria de la suma pesada (a0 * p(a0)).
+  - Bias (in input mas que no cambia)
+  - Function de activacion (modelo de la neurona, puede ser no lineal):
+    - Gradient descent para minizar el modelo
+    - La funcion de activacion g, que puede ser no lineal, se llama como g(la suma pesada de los inputs)
+    - Facilmente derivable
+    - Puede ser:
+      - Sismoide
+      - tanh
+      - relu (no derivable en (0,0))
+  - El output va a ser el input de otra neurona
+
+Modelamos AND usando un bias = 1.5, con funcion sismoide. El bias indica cuando va a moverse la funcion de 0 a 1
+
+No hay ninguna funcion lineal que pueda aprender el XOR
+
+- Epochs, pruebas para minimizar el error de una neurona ajustando los pesos. Si iteran muchas veces.
+  - E = 1/2 (y - hw(x))^2 , trato de minimzar esta funcion.
+    - Derivo la funcion de error usando la derivada parcial de cada peso.
+    - Actualizamos Wi ( peso de input i) como Wi - (dE/Dxi) * L
+    - L = Factor de aprendizaje (puede ser dinamico/estatico)
+
+Ejercicio: Iris Flower dataset
+  - Data-set: iris-flower-dataset
+  - Usar torch.nn
+    - Hacer una clasificacion de las flores
+  - Una neurona para decir si o no a cierta categoria
+  - Hacer Single layer perceptron
