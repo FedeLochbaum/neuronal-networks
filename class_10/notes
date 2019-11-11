@@ -1,0 +1,47 @@
+- Multi layer neural networks
+
+Con un single layer solo podemos aprender patrones (modelos) lineales
+
+Function sotfmax es la posta ( te asegura que los outputs suman 1) (para clasificacion)
+
+Multi layer:
+ - varias capas
+ - Nos permite ajustar mejor funciones no lineales
+ - Deep learning: Many Layered
+  - fill forward neural network/
+  - Recurrent neural network
+    - Fully Recurrent
+    - Hopfield
+    - Directed cycles
+
+Back propagation
+  - Gradient descent
+  - Output layer error, D_i = Err_i x g'(in_i)
+  - Output layer update es igual a single layer
+
+  - Hidden layer error, D_j = g(cin_j) * Sumatoria(i, n, W_j,i * D_i)
+  - Hidden layer update = W_kj = W_kj + learning_rate * in_k * D_j
+  - Problemas de gradient descent
+    - Para salvar el problema de los plato's, se hace una inicializacion aleatoria de los pesos
+      ( hay formulas locas de rango)
+    - Para no loopear en un optimo local, se usa la ecuacion de "momentum"
+    - Tener un learning_rate mnuy alto, se reduce a lo largo del tiempo
+      - AdaGrad algorithm
+    - Usar ephocs
+      - Stochastic GD
+        - Mezclar el training set y actualizar los pesos con cada ejemplo (medianamente malo)
+        - Paga menos por ejemplo
+      - Mini batch GD (lo que se usa)
+        - En vez de usar 1, usa n (mini batch por epoch)
+        - Es super paralelizable para GPU
+      
+
+  Tarea:
+    - Handwritten digitos
+    - usando torch.nn
+     - hacer una classificacion de las imagenes de digitos escritos a mano
+     - El valor de cada pixel es un input
+     - Usamos n hidden layer con alguna funcion relu
+     - Usar una clasificacion al final, funcion sismoide, layer de 10 neuronas
+
+
