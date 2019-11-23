@@ -1,0 +1,28 @@
+- Convolutional Neural Networks
+
+Multi layer Neural Networks escalan mal...
+
+ - Operacion de convolucion
+  - Se usan filtros(kernels) para reducir el tamaño/espacio de imagenes (no necesariamente 2d)
+  - Se "aplica" multiplicando el filtro con la imagen original
+
+Usando un layer convolucional, se reduce la cantidad de conexiones entre las neuronas
+Los valores del kernel(filtro) se aprende junto con el resto de params
+
+- Operacion de Pooling
+  - Agrupamiento
+    - Operaciones como max, average.
+  - La idea es reducir la dimensionalidad
+
+- Operacion de Flattening
+  - La idea es agarrar un volumen y transformarlo en un vector secuenecial
+  - Dicho vector es usado como input para una MFNN
+
+
+  Pipeline:
+    - Img => [Kernel] + Relu => Max Pooling => MaxPooling ... => Flatten => Classification
+
+  Ejercicio:
+    - CIFAR - 10
+    - kaggle
+    - Hacer una clasificacion de las imagenes mediante CNNs
